@@ -19,17 +19,17 @@ public class Game {
 	QuestionsSupplier questionsSupplier;
 
 	public Game() {
-		questionsSupplier = new QuestionsSupplierImpl();
+		this(new QuestionsSupplierImpl());
+	}
+
+	public Game(QuestionsSupplier questionsSupplier) {
+		this.questionsSupplier = questionsSupplier;
 		for (int i = 0; i < 50; i++) {
 			popQuestions.addLast("Pop Question " + i);
 			scienceQuestions.addLast(("Science Question " + i));
 			sportsQuestions.addLast(("Sports Question " + i));
 			rockQuestions.addLast(createRockQuestion(i));
 		}
-	}
-
-	public Game(QuestionsSupplier questionsSupplier) {
-		this.questionsSupplier = questionsSupplier;
 	}
 
 	public String createRockQuestion(int index) {
@@ -102,14 +102,7 @@ public class Game {
 
 	// visibleForTesting
 	void askQuestion(String currentCategory) {
-		if (currentCategory == "Pop")
-			System.out.println(popQuestions.removeFirst());
-		if (currentCategory == "Science")
-			System.out.println(scienceQuestions.removeFirst());
-		if (currentCategory == "Sports")
-			System.out.println(sportsQuestions.removeFirst());
-		if (currentCategory == "Rock")
-			System.out.println(rockQuestions.removeFirst());
+		questionsSupplier.askQuestion(currentCategory);
 	}
 
 	private String currentCategory() {

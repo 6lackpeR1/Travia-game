@@ -41,6 +41,16 @@ public class GameSpec {
 		assertEquals(game.questionsSupplier, questionsSupplier);
 
 	}
+	
+	@Test
+	public void gameInstantiatedWithAllQuestion() {
+		QuestionsSupplier questionsSupplier = new QuestionsSupplierImpl();
+		game = new Game(questionsSupplier);
+		assertEquals(game.popQuestions.size(), 50);
+		assertEquals(game.scienceQuestions.size(), 50);
+		assertEquals(game.sportsQuestions.size(), 50);
+		assertEquals(game.rockQuestions.size(), 50);
+	}
 
 	@Test
 	public void askQuestionShouldCallAskQuestionSupplier() {
@@ -48,38 +58,6 @@ public class GameSpec {
 		game = new Game(questionsSupplierMock);
 		game.askQuestion("Pop");
 		assertEquals(questionsSupplierMock.getAskCategory(), "Pop");
-	}
-
-	@Test
-	public void askQuestionShouldRemovePopFromPopCategory() {
-		LinkedList questions = game.popQuestions;
-		String currentCategory = "Pop";
-
-		assertAskQuestionRemoveFromCurrentCategory(questions, currentCategory);
-	}
-
-	@Test
-	public void askQuestionShouldRemoveScienceFromScienceCategory() {
-		LinkedList questions = game.scienceQuestions;
-		String currentCategory = "Science";
-
-		assertAskQuestionRemoveFromCurrentCategory(questions, currentCategory);
-	}
-
-	@Test
-	public void askQuestionShouldRemoveSportsFromSportsCategory() {
-		LinkedList questions = game.sportsQuestions;
-		String currentCategory = "Sports";
-
-		assertAskQuestionRemoveFromCurrentCategory(questions, currentCategory);
-	}
-
-	@Test
-	public void askQuestionShouldRemoveRockFromRockCategory() {
-		LinkedList questions = game.rockQuestions;
-		String currentCategory = "Rock";
-
-		assertAskQuestionRemoveFromCurrentCategory(questions, currentCategory);
 	}
 
 	private void assertAskQuestionRemoveFromCurrentCategory(
