@@ -112,6 +112,7 @@ public class Game {
 
 	// visibleForTesting
 	String currentCategory(int place) {
+		questionsSupplier.currentCategory(place);
 		if (place == 0)
 			return "Pop";
 		if (place == 4)

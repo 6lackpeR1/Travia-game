@@ -12,6 +12,7 @@ public class GameSpec {
 
 	static class QuestionsSupplierMock implements QuestionsSupplier {
 		private String currentCategory;
+		private int place;
 
 		@Override
 		public void askQuestion(String currentCategory) {
@@ -20,11 +21,16 @@ public class GameSpec {
 
 		@Override
 		public String currentCategory(int place) {
+			this.place = place;
 			return null;
 		}
 
 		public String getAskCategory() {
 			return currentCategory;
+		}
+
+		public int getCurrentCategoryWithPlace() {
+			return place;
 		}
 
 	}
@@ -41,7 +47,7 @@ public class GameSpec {
 		assertEquals(game.questionsSupplier, questionsSupplier);
 
 	}
-	
+
 	@Test
 	public void gameInstantiatedWithAllQuestion() {
 		QuestionsSupplier questionsSupplier = new QuestionsSupplierImpl();
@@ -58,6 +64,15 @@ public class GameSpec {
 		game = new Game(questionsSupplierMock);
 		game.askQuestion("Pop");
 		assertEquals(questionsSupplierMock.getAskCategory(), "Pop");
+	}
+
+	@Test
+	public void askQuestionShouldCallCurrentCategorySupplier() {
+		QuestionsSupplierMock questionsSupplierMock = new QuestionsSupplierMock();
+		int place = 2;
+		game = new Game(questionsSupplierMock);
+		game.currentCategory(place);
+		assertEquals(questionsSupplierMock.getCurrentCategoryWithPlace(), place);
 	}
 
 	private void assertAskQuestionRemoveFromCurrentCategory(
