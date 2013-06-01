@@ -15,14 +15,14 @@ public class GameSpec {
 		game = new Game();
 	}
 
-//	@Test
-//	public void askQuestionShouldRemovePopFromPopCategory() {
-//		LinkedList questions = game.popQuestions;
-//		String currentCategory = "Pop";
-//
-//		assertAskQuestionRemoveFromCurrentCategory(questions,
-//				currentCategory);
-//	}
+	@Test
+	public void askQuestionShouldRemovePopFromPopCategory() {
+		LinkedList questions = game.popQuestions;
+		String currentCategory = "Pop";
+
+		assertAskQuestionRemoveFromCurrentCategory(questions,
+				currentCategory);
+	}
 
 	@Test
 	public void askQuestionShouldRemoveScienceFromScienceCategory() {
