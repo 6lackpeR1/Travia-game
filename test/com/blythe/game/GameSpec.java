@@ -16,12 +16,24 @@ public class GameSpec {
 	}
 
 	@Test
+	public void gameInstantiatedWithSupplierParameter() {
+		QuestionsSupplier questionsSupplier = new QuestionsSupplierImpl();
+		game = new Game(questionsSupplier);
+		assertEquals(game.questionsSupplier, questionsSupplier);
+
+	}
+
+	// @Test
+	// public void askQuestionShouldCallAskQuestionSupplier() {
+	//
+	// }
+
+	@Test
 	public void askQuestionShouldRemovePopFromPopCategory() {
 		LinkedList questions = game.popQuestions;
 		String currentCategory = "Pop";
 
-		assertAskQuestionRemoveFromCurrentCategory(questions,
-				currentCategory);
+		assertAskQuestionRemoveFromCurrentCategory(questions, currentCategory);
 	}
 
 	@Test
@@ -29,8 +41,7 @@ public class GameSpec {
 		LinkedList questions = game.scienceQuestions;
 		String currentCategory = "Science";
 
-		assertAskQuestionRemoveFromCurrentCategory(questions,
-				currentCategory);
+		assertAskQuestionRemoveFromCurrentCategory(questions, currentCategory);
 	}
 
 	@Test
@@ -38,8 +49,7 @@ public class GameSpec {
 		LinkedList questions = game.sportsQuestions;
 		String currentCategory = "Sports";
 
-		assertAskQuestionRemoveFromCurrentCategory(questions,
-				currentCategory);
+		assertAskQuestionRemoveFromCurrentCategory(questions, currentCategory);
 	}
 
 	@Test
@@ -47,15 +57,14 @@ public class GameSpec {
 		LinkedList questions = game.rockQuestions;
 		String currentCategory = "Rock";
 
-		assertAskQuestionRemoveFromCurrentCategory(questions,
-				currentCategory);
+		assertAskQuestionRemoveFromCurrentCategory(questions, currentCategory);
 	}
 
 	private void assertAskQuestionRemoveFromCurrentCategory(
 			LinkedList questions, String currentCategory) {
 		int beforeSize = questions.size();
 		Object secondQuest = questions.get(1);
-		
+
 		game.askQuestion(currentCategory);
 		assertEquals(questions.size(), beforeSize - 1);
 		assertEquals(questions.get(0), secondQuest);

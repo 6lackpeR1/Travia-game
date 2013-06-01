@@ -9,11 +9,11 @@ import org.junit.Test;
 
 public class QuestionsSupplierSpec {
 
-	private QuestionsSupplier questionsSupplier;
+	private QuestionsSupplierImpl questionsSupplier;
 
 	@Before
 	public void before() {
-		questionsSupplier = new QuestionsSupplier();
+		questionsSupplier = new QuestionsSupplierImpl();
 	}
 
 	@Test
