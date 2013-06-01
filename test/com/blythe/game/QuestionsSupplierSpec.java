@@ -13,7 +13,7 @@ public class QuestionsSupplierSpec {
 
 	@Before
 	public void before() {
-		questionsSupplier = new questionsSupplier();
+		questionsSupplier = new QuestionsSupplier();
 	}
 
 	@Test

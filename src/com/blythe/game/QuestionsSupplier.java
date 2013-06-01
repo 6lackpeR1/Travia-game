@@ -23,13 +23,36 @@ public class QuestionsSupplier {
 	}
 
 	public void askQuestion(String currentCategory) {
-		// TODO Auto-generated method stub
-
+		if (currentCategory == "Pop")
+			System.out.println(popQuestions.removeFirst());
+		if (currentCategory == "Science")
+			System.out.println(scienceQuestions.removeFirst());
+		if (currentCategory == "Sports")
+			System.out.println(sportsQuestions.removeFirst());
+		if (currentCategory == "Rock")
+			System.out.println(rockQuestions.removeFirst());
 	}
 
-	public Object currentCategory(int place) {
-		// TODO Auto-generated method stub
-		return null;
+	public String currentCategory(int place) {
+		if (place == 0)
+			return "Pop";
+		if (place == 4)
+			return "Pop";
+		if (place == 8)
+			return "Pop";
+		if (place == 1)
+			return "Science";
+		if (place == 5)
+			return "Science";
+		if (place == 9)
+			return "Science";
+		if (place == 2)
+			return "Sports";
+		if (place == 6)
+			return "Sports";
+		if (place == 10)
+			return "Sports";
+		return "Rock";
 	}
 
 }
