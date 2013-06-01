@@ -59,6 +59,14 @@ public class QuestionsSupplierSpec {
 	}
 
 	@Test
+	public void gameInstantiatedWithAllQuestion() {
+		assertEquals(questionsSupplier.popQuestions.size(), 50);
+		assertEquals(questionsSupplier.scienceQuestions.size(), 50);
+		assertEquals(questionsSupplier.sportsQuestions.size(), 50);
+		assertEquals(questionsSupplier.rockQuestions.size(), 50);
+	}
+
+	@Test
 	public void currentCategoryShouldReturnPOPSpacificPlace() {
 		assertEquals(questionsSupplier.currentCategory(0), "Pop");
 		assertEquals(questionsSupplier.currentCategory(4), "Pop");
