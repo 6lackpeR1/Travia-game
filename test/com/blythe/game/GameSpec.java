@@ -10,6 +10,25 @@ import org.junit.Test;
 public class GameSpec {
 	private Game game;
 
+	static class QuestionsSupplierMock implements QuestionsSupplier {
+		private String currentCategory;
+
+		@Override
+		public void askQuestion(String currentCategory) {
+			this.currentCategory = currentCategory;
+		}
+
+		@Override
+		public String currentCategory(int place) {
+			return null;
+		}
+
+		public String getAskCategory() {
+			return currentCategory;
+		}
+
+	}
+
 	@Before
 	public void before() {
 		game = new Game();
@@ -23,10 +42,13 @@ public class GameSpec {
 
 	}
 
-	// @Test
-	// public void askQuestionShouldCallAskQuestionSupplier() {
-	//
-	// }
+	@Test
+	public void askQuestionShouldCallAskQuestionSupplier() {
+		QuestionsSupplierMock questionsSupplierMock = new QuestionsSupplierMock();
+		game = new Game(questionsSupplierMock);
+		game.askQuestion("Pop");
+		assertEquals(questionsSupplierMock.getAskCategory(), "Pop");
+	}
 
 	@Test
 	public void askQuestionShouldRemovePopFromPopCategory() {
